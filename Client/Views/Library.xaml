@@ -1,0 +1,50 @@
+﻿<Window x:Class="Client.Views.Library"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client.Views"
+        mc:Ignorable="d"
+        Title="Library" Height="555" Width="1250">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="141*"/>
+            <ColumnDefinition Width="1109*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="lblName" Content="Name : " HorizontalAlignment="Left" Margin="70,55,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblAuthor" Content="Author : " HorizontalAlignment="Left" Margin="71,89,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtboxname" HorizontalAlignment="Left" Margin="126,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" Height="20" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txtboxauthor" HorizontalAlignment="Left" Margin="127,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="221" Grid.ColumnSpan="2"/>
+        <Button Content="Save book" HorizontalAlignment="Left" Margin="88,140,0,0" VerticalAlignment="Top" Click="Button_Click" Width="103" Grid.ColumnSpan="2"/>
+        <Button x:Name="RefreshButton" Content="Refresh" HorizontalAlignment="Left" Margin="625,474,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.538,0.503" Height="24" Width="94" Click="RefreshButton_Click" Grid.Column="1"/>
+        <Label x:Name="lblmesseng" Content="" HorizontalAlignment="Left" Margin="35,119,0,0" VerticalAlignment="Top" Width="109" Grid.Column="1"/>
+        <DataGrid x:Name="dgBooks" 
+                  xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit"
+                  CanUserAddRows="True"
+                  d:ItemsSource="{Binding}" 
+                  Margin="230,21,33,110"
+                  AutoGenerateColumns="False" Grid.Column="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="id" Binding="{Binding Path=id}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}"/>
+                <DataGridTextColumn Header="Author" Binding="{Binding Path=Author}"/>
+                <DataGridTemplateColumn Header="Edit Actions">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="btnEditBook">Edit</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Delete Actions">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="btnDeleteBook">Delete</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox x:Name="bookid" HorizontalAlignment="Left" Visibility="Hidden" Margin="127,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+        <Button Grid.Column="1" Content="Update book" HorizontalAlignment="Left" Margin="89,139,0,0" VerticalAlignment="Top" Height="24" Width="92" Click="Button_Click_1"/>
+    </Grid>
+</Window>
